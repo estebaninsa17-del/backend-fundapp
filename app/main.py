@@ -23,8 +23,28 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# ── Exception Handler for debugging ──────────────────────────────────────────
+from fastapi import Request
+from fastapi.responses import JSONResponse
+import traceback
+
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    print("GLOBAL EXCEPTION:")
+    traceback.print_exc()
+    return JSONResponse(
+        status_code=500,
+        content={
+            "detail": "Internal Server Error",
+            "error_type": type(exc).__name__,
+            "error_message": str(exc),
+            "traceback": "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))
+        }
+    )
+
 # ── Routers ───────────────────────────────────────────────────────────────────
 app.include_router(router)
+
 
 
 # ── Health check ──────────────────────────────────────────────────────────────
