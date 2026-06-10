@@ -56,6 +56,12 @@ class AuthService:
             }
         )
 
+        if not new_user:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="No se pudo registrar el usuario. Verifique si el número y tipo de documento ya están registrados.",
+            )
+
         new_user.pop("contrasena", None)
         user_data = {**new_user, "rol": "voluntario", "esAdmin": False}
         token = create_access_token(

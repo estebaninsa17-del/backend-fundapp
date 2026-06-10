@@ -49,7 +49,11 @@ class UsuarioRepository:
             .insert(data)
             .execute()
         )
-        return _first_or_none(res.data) or {}
+        inserted = _first_or_none(res.data)
+        if not inserted and "correo" in data:
+            inserted = self.find_by_email(data["correo"])
+        return inserted or {}
+
 
     def get_role(self, idusuarios: int) -> str:
         """Retorna 'admin' o 'voluntario'."""
