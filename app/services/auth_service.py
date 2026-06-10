@@ -14,13 +14,13 @@ class AuthService:
         if not usuario:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Credenciales inválidas",
+                detail="Credenciales invalidas",
             )
 
         if not verify_password(dto.password, usuario["contrasena"]):
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Credenciales inválidas",
+                detail="Credenciales invalidas",
             )
 
         rol = self._repo.get_role(usuario["idusuarios"])
@@ -42,7 +42,14 @@ class AuthService:
         if existing:
             raise HTTPException(
                 status_code=status.HTTP_409_CONFLICT,
-                detail="El correo ya está registrado",
+                detail="Este correo electronico ya esta registrado.",
+            )
+
+        existing_document = self._repo.find_by_numero_documento(int(dto.numerodocumento))
+        if existing_document:
+            raise HTTPException(
+                status_code=status.HTTP_409_CONFLICT,
+                detail="Este numero de documento ya esta registrado.",
             )
 
         new_user = self._repo.create(
@@ -59,7 +66,7 @@ class AuthService:
         if not new_user:
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="No se pudo registrar el usuario. Verifique si el número y tipo de documento ya están registrados.",
+                detail="No se pudo registrar el usuario. Revisa los datos e intentalo nuevamente.",
             )
 
         new_user.pop("contrasena", None)

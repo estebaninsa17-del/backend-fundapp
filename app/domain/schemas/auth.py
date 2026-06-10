@@ -17,7 +17,7 @@ class RegisterDTO(BaseModel):
     @classmethod
     def documento_numerico(cls, value: str) -> str:
         if not value.isdigit():
-            raise ValueError("El número de documento debe contener solo dígitos")
+            raise ValueError("El numero de documento debe contener solo digitos")
         return value
 
 

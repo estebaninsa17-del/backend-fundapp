@@ -43,6 +43,16 @@ class UsuarioRepository:
         )
         return _first_or_none(res.data)
 
+    def find_by_numero_documento(self, numerodocumento: int) -> Optional[dict]:
+        res = (
+            self._db.schema("usuarios").from_("usuarios")
+            .select("*")
+            .eq("numerodocumento", numerodocumento)
+            .limit(1)
+            .execute()
+        )
+        return _first_or_none(res.data)
+
     def create(self, data: dict) -> dict:
         res = (
             self._db.schema("usuarios").from_("usuarios")
