@@ -110,3 +110,19 @@ Authorization: Bearer <token>
 ```
 
 El token se obtiene en `/api/v1/auth/login`.
+
+---
+
+## 🌳 Flujo de trabajo Git
+
+Este proyecto usa **Git Flow** con `main` (producción) y `develop` (integración), ramas `feature/*`, `release/*` y `hotfix/*`, y mensajes de commit en formato **[Conventional Commits](https://www.conventionalcommits.org/)**.
+
+### Resumen rápido
+
+1. Crea ramas desde `develop`: `feature/nombre`, `fix/nombre`, etc.
+2. Escribe commits como `feat(auth): descripción` o `fix(certificados): descripción`.
+3. Abre Pull Requests hacia `develop` (o hacia `main` solo en hotfixes).
+4. Instala herramientas de desarrollo: `pip install -r requirements-dev.txt`
+5. Activa validación local: `pre-commit install --hook-type commit-msg`
+
+Para la guía completa (nombres de ramas, scopes por módulo, commitizen y CI), consulta **[CONTRIBUTING.md](./CONTRIBUTING.md)**.

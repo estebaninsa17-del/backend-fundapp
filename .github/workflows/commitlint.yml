@@ -1,0 +1,27 @@
+name: Commitlint
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install commitizen
+        run: pip install commitizen
+
+      - name: Validate commit messages
+        run: cz check --rev-range origin/${{ github.base_ref }}..HEAD
