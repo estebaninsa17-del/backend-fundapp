@@ -11,7 +11,7 @@ export async function GET() {
       { data: montoData }
     ] = await Promise.all([
       supabase.schema('voluntariado').from('voluntarios').select('*', { count: 'exact', head: true }),
-      supabase.schema('voluntariado').from('actividades').select('*', { count: 'exact', head: true }).gte('fechafin', new Date().toISOString().split('T')[0]),
+      supabase.schema('voluntariado').from('actividades').select('*', { count: 'exact', head: true }),
       supabase.schema('donaciones').from('donaciones').select('monto').eq('estadopago', 'Confirmada')
     ]);
 
