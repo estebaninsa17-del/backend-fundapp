@@ -69,7 +69,7 @@ uvicorn app.main:app --reload --port 8000
 
 ---
 
-## 📡 Endpoints disponibles
+Endpoints disponibles
 
 | Método | Ruta | Auth | Descripción |
 |--------|------|------|-------------|
@@ -103,7 +103,7 @@ Documentación interactiva
 
 Autenticación
 
-El API usa **JWT Bearer tokens**. Para endpoints protegidos:
+El API usa JWT Bearer tokens. Para endpoints protegidos:
 
 ```
 Authorization: Bearer <token>
