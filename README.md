@@ -1,10 +1,10 @@
-# FundApp — Backend API (FastAPI + Supabase)
+FundApp — Backend API (FastAPI + Supabase)
 
 Backend REST con **arquitectura limpia** para la plataforma de voluntariado y donaciones FundApp.
 
 ---
 
-## 🏗️ Estructura del proyecto
+Estructura del proyecto
 
 ```
 fundapp-backend/
@@ -35,9 +35,9 @@ fundapp-backend/
 
 ---
 
-## 🚀 Instalación y ejecución
+Instalación y ejecución
 
-### 1. Clonar e instalar dependencias
+1. Clonar e instalar dependencias
 
 ```bash
 cd fundapp-backend
@@ -46,7 +46,7 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 2. Configurar variables de entorno
+2. Configurar variables de entorno
 
 ```bash
 cp .env.example .env
@@ -61,7 +61,7 @@ SUPABASE_SERVICE_KEY=tu-service-role-key
 JWT_SECRET=tu-jwt-secret   # El mismo que usabas en SUPABASE_JWT_SECRET
 ```
 
-### 3. Levantar el servidor
+3. Levantar el servidor
 
 ```bash
 uvicorn app.main:app --reload --port 8000
@@ -94,14 +94,14 @@ uvicorn app.main:app --reload --port 8000
 
 ---
 
-## 📖 Documentación interactiva
+Documentación interactiva
 
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 
 ---
 
-## 🔐 Autenticación
+Autenticación
 
 El API usa **JWT Bearer tokens**. Para endpoints protegidos:
 
